@@ -2,7 +2,9 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const connectDB = require('./config/config.js');
-
+const ownerRouter = require('./routes/ownerRouter.js')
+const usersRouter = require('./routes/usersRouter.js')
+const productsRouter = require('./routes/productsRouter.js')
 
 const app = express();
 app.use(cookieParser());
@@ -13,11 +15,7 @@ app.set("view engine", "ejs");
 
 startServer();
 
-app.get('/', function(req,res){
-    res.status(200).send({
-        message: "ok"
-    })
-})
+
 
 // writing routes for seperate concern 
 app.use("/users", usersRouter);
