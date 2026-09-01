@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-
+const connectDB = require('./config/config.js');
 
 
 const app = express();
@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
-
+startServer();
 
 app.get('/', function(req,res){
     res.status(200).send({
@@ -19,11 +19,15 @@ app.get('/', function(req,res){
     })
 })
 
+// writing routes for seperate concern 
+app.use("/users", usersRouter);
+app.use("/owner", ownerRouter);
+app.use("/products", productsRouter);
 
 
-startServer();
-function startServer(){
+async function startServer(){
     try {
+        await connectDB();
         app.listen(3000, function(){
             console.log('server is on');
         })
