@@ -6,12 +6,12 @@ const userSchema = new mongoose.Schema({
     email: String,
     Password : String,
     cart : {
-        type: array,
+        type: Array,
         default: []
     },
-    isadmin: Boolean,
+    
     orders: {
-        type: array,
+        type: Array,
         default: []
     },
     contact : Number,

@@ -5,6 +5,9 @@ const connectDB = require('./config/config.js');
 const ownerRouter = require('./routes/ownerRouter.js')
 const usersRouter = require('./routes/usersRouter.js')
 const productsRouter = require('./routes/productsRouter.js')
+const indexRouter = require('./routes/indexRouter.js')
+require('dotenv').config();
+
 
 const app = express();
 app.use(cookieParser());
@@ -18,6 +21,7 @@ startServer();
 
 
 // writing routes for seperate concern 
+app.use('/', indexRouter);
 app.use("/users", usersRouter);
 app.use("/owner", ownerRouter);
 app.use("/products", productsRouter);
