@@ -8,7 +8,7 @@ const ownerSchema = new mongoose.Schema({
 
   
     products: {
-        type: array,
+        type: Array,
         default: []
     },
    
